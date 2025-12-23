@@ -4,9 +4,9 @@
 #   make -f Makefile.loops all          # Build all loops
 #   make -f Makefile.loops clean        # Clean everything
 
-CC = clang++
-CFLAGS = -O3 -march=native
-VECFLAGS = -Rpass=loop-vectorize -Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize
+CC = clang++-18
+CFLAGS = -O3 -march=native -fstrict-aliasing
+VECFLAGS=
 YAML_FLAGS = -fsave-optimization-record
 
 SRC_DIR = src
@@ -14,7 +14,7 @@ SRC_DIR = src
 # Automatically find all .cpp files in src/
 SRCS = $(wildcard $(SRC_DIR)/s*.cpp)
 OBJS = $(patsubst $(SRC_DIR)/%.cpp,%.o,$(SRCS))
-YAMLS = $(patsubst %.o,%.opt.yaml,$(OBJS))
+
 
 # Build all loops
 all: $(OBJS)
@@ -22,7 +22,7 @@ all: $(OBJS)
 
 # Pattern rule: compile any s*.cpp file
 %.o: $(SRC_DIR)/%.cpp
-	$(CC) $(CFLAGS) $(VECFLAGS) $(YAML_FLAGS)=$*.opt.yaml -c -o $@ $<
+	$(CC) $(CFLAGS) $(VECFLAGS) $(YAML_FLAGS) -c -o $@ $<
 	@echo "✓ Compiled $< → $@ (remarks in $*.opt.yaml)"
 
 clean:
