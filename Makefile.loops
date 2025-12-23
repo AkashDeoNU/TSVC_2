@@ -1,0 +1,36 @@
+# Makefile for compiling loop experiments
+# Usage:
+#   make -f Makefile.loops s1111.o      # Build one loop
+#   make -f Makefile.loops all          # Build all loops
+#   make -f Makefile.loops clean        # Clean everything
+
+CC = clang++
+CFLAGS = -O3 -march=native
+VECFLAGS = -Rpass=loop-vectorize -Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize
+YAML_FLAGS = -fsave-optimization-record
+
+SRC_DIR = src
+
+# Automatically find all .cpp files in src/
+SRCS = $(wildcard $(SRC_DIR)/s*.cpp)
+OBJS = $(patsubst $(SRC_DIR)/%.cpp,%.o,$(SRCS))
+YAMLS = $(patsubst %.o,%.opt.yaml,$(OBJS))
+
+# Build all loops
+all: $(OBJS)
+	@echo "Built all loops: $(OBJS)"
+
+# Pattern rule: compile any s*.cpp file
+%.o: $(SRC_DIR)/%.cpp
+	$(CC) $(CFLAGS) $(VECFLAGS) $(YAML_FLAGS)=$*.opt.yaml -c -o $@ $<
+	@echo "✓ Compiled $< → $@ (remarks in $*.opt.yaml)"
+
+clean:
+	rm -f $(OBJS) *.opt.yaml
+
+# List available targets
+list:
+	@echo "Available loops:"
+	@echo "$(OBJS)" | tr ' ' '\n'
+
+.PHONY: all clean list
