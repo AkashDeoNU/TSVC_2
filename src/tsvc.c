@@ -1,27 +1,4 @@
 
-/*
- * This is an executable test containing a number of loops to measure
- * the performance of a compiler. Arrays' length is LEN_1D by default
- * and if you want a different array length, you should replace every
- * LEN_1D by your desired number which must be a multiple of 40. If you
- * want to increase the number of loop calls to have a longer run time
- * you have to manipulate the constant value iterations. There is a dummy
- * function called in each loop to make all computations appear required.
- * The time to execute this function is included in the time measurement
- * for the output but it is neglectable.
- *
- *  The output includes three columns:
- *    Loop:        The name of the loop
- *    Time(Sec):     The time in seconds to run the loop
- *    Checksum:    The checksum calculated when the test has run
- *
- * In this version of the codelets arrays are static type.
- *
- * All functions/loops are taken from "TEST SUITE FOR VECTORIZING COMPILERS"
- * by David Callahan, Jack Dongarra and David Levine except those whose
- * functions' name have 4 digits.
- */
-
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +8,6 @@
 #include "common.h"
 #include "array_defs.h"
 
-// array definitions
 __attribute__((aligned(ARRAY_ALIGNMENT))) real_t flat_2d_array[LEN_2D*LEN_2D];
 
 __attribute__((aligned(ARRAY_ALIGNMENT))) real_t x[LEN_1D];
@@ -47,9 +23,6 @@ real_t* yy;
 real_t s000(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    no dependence - vectorizable
-
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
 
@@ -64,12 +37,8 @@ real_t s000(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.1
 real_t s111(struct args_t * func_args)
 {
-
-//    linear dependence testing
-//    no dependence - vectorizable
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -88,8 +57,6 @@ real_t s111(struct args_t * func_args)
 real_t s1111(struct args_t * func_args)
 {
 
-//    no dependence - vectorizable
-//    jump in data access
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -105,13 +72,10 @@ real_t s1111(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.1
 
 real_t s112(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    loop reversal
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -130,8 +94,6 @@ real_t s112(struct args_t * func_args)
 real_t s1112(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    loop reversal
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -147,13 +109,10 @@ real_t s1112(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.1
 
 real_t s113(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    a(i)=a(1) but no actual dependence cycle
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -172,8 +131,6 @@ real_t s113(struct args_t * func_args)
 real_t s1113(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    one iteration dependency on a(LEN_1D/2) but still vectorizable
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -189,14 +146,10 @@ real_t s1113(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.1
 
 real_t s114(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    transpose vectorization
-//    Jump in data access - not vectorizable
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -214,13 +167,10 @@ real_t s114(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.1
 
 real_t s115(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    triangular saxpy loop
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -241,8 +191,6 @@ real_t s115(struct args_t * func_args)
 real_t s1115(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    triangular saxpy loop
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -260,12 +208,10 @@ real_t s1115(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.1
 
 real_t s116(struct args_t * func_args)
 {
 
-//    linear dependence testing
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -285,13 +231,10 @@ real_t s116(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.1
 
 real_t s118(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    potential dot product recursion
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -309,13 +252,10 @@ real_t s118(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.1
 
 real_t s119(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    no dependence - vectorizable
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -336,8 +276,6 @@ real_t s119(struct args_t * func_args)
 real_t s1119(struct args_t * func_args)
 {
 
-//    linear dependence testing
-//    no dependence - vectorizable
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -355,13 +293,10 @@ real_t s1119(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.2
 
 real_t s121(struct args_t * func_args)
 {
 
-//    induction variable recognition
-//    loop with possible ambiguity because of scalar store
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -379,14 +314,10 @@ real_t s121(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.2
 
 real_t s122(struct args_t * func_args)
 {
 
-//    induction variable recognition
-//    variable lower and upper bound, and stride
-//    reverse data access and jump in data access
 
     struct{int a;int b;} * x = func_args->arg_info;
     int n1 = x->a;
@@ -410,14 +341,10 @@ real_t s122(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.2
 
 real_t s123(struct args_t * func_args)
 {
 
-//    induction variable recognition
-//    induction variable under an if
-//    not vectorizable, the condition cannot be speculated
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -440,13 +367,10 @@ real_t s123(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.2
 
 real_t s124(struct args_t * func_args)
 {
 
-//    induction variable recognition
-//    induction variable under both sides of if (same value)
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -470,12 +394,9 @@ real_t s124(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.2
 real_t s125(struct args_t * func_args)
 {
 
-//    induction variable recognition
-//    induction variable in two loops; collapsing possible
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -496,12 +417,9 @@ real_t s125(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.2
 real_t s126(struct args_t * func_args)
 {
 
-//    induction variable recognition
-//    induction variable in two loops; recurrence in inner loop
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -523,13 +441,10 @@ real_t s126(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.2
 
 real_t s127(struct args_t * func_args)
 {
 
-//    induction variable recognition
-//    induction variable with multiple increments
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -550,14 +465,10 @@ real_t s127(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.2
 
 real_t s128(struct args_t * func_args)
 {
 
-//    induction variables
-//    coupled induction variables
-//    jump in data access
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -578,12 +489,9 @@ real_t s128(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.3
 
 real_t s131(struct args_t * func_args)
 {
-//    global data flow analysis
-//    forward substitution
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -600,12 +508,9 @@ real_t s131(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.3
 
 real_t s132(struct args_t * func_args)
 {
-//    global data flow analysis
-//    loop with multiple dimension ambiguous subscripts
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -624,14 +529,10 @@ real_t s132(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.4
 
 real_t s141(struct args_t * func_args)
 {
 
-//    nonlinear dependence testing
-//    walk a row in a symmetric packed array
-//    element a(i,j) for (int j>i) stored in location j*(j-1)/2+i
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -652,7 +553,6 @@ real_t s141(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.5
 
 void s151s(real_t a[LEN_1D], real_t b[LEN_1D],  int m)
 {
@@ -664,8 +564,6 @@ void s151s(real_t a[LEN_1D], real_t b[LEN_1D],  int m)
 real_t s151(struct args_t * func_args)
 {
 
-//    interprocedural data flow analysis
-//    passing parameter information into a subroutine
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -679,7 +577,6 @@ real_t s151(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.5
 
 void s152s(real_t a[LEN_1D], real_t b[LEN_1D], real_t c[LEN_1D], int i)
 {
@@ -689,8 +586,6 @@ void s152s(real_t a[LEN_1D], real_t b[LEN_1D], real_t c[LEN_1D], int i)
 real_t s152(struct args_t * func_args)
 {
 
-//    interprocedural data flow analysis
-//    collecting information from a subroutine
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -707,14 +602,10 @@ real_t s152(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.6
 
 real_t s161(struct args_t * func_args)
 {
 
-//    control flow
-//    tests for recognition of loop independent dependences
-//    between statements in mutually exclusive regions.
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -741,9 +632,6 @@ L10:
 real_t s1161(struct args_t * func_args)
 {
 
-//    control flow
-//    tests for recognition of loop independent dependences
-//    between statements in mutually exclusive regions.
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -767,13 +655,9 @@ L10:
     return calc_checksum(__func__);
 }
 
-// %1.6
 
-//int s162(int k)
 real_t s162(struct args_t * func_args)
 {
-//    control flow
-//    deriving assertions
 
     int k = *(int*)func_args->arg_info;
 
@@ -793,14 +677,10 @@ real_t s162(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.7
 
-//int s171(int inc)
 real_t s171(struct args_t * func_args)
 {
 
-//    symbolics
-//    symbolic dependence tests
 
     int inc = *(int*)func_args->arg_info;
 
@@ -818,13 +698,9 @@ real_t s171(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.7
 
-//int s172( int n1, int n3)
 real_t s172(struct args_t * func_args)
 {
-//    symbolics
-//    vectorizable if n3 .ne. 0
 
     struct{int a;int b;} * x = func_args->arg_info;
     int n1 = x->a;
@@ -844,12 +720,9 @@ real_t s172(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.7
 
 real_t s173(struct args_t * func_args)
 {
-//    symbolics
-//    expression in loop bounds and subscripts
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -866,14 +739,10 @@ real_t s173(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.7
 
-//int s174(int M)
 real_t s174(struct args_t * func_args)
 {
 
-//    symbolics
-//    loop with subscript that may seem ambiguous
 
     int M = *(int*)func_args->arg_info;
 
@@ -891,14 +760,10 @@ real_t s174(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.7
 
-//int s175(int inc)
 real_t s175(struct args_t * func_args)
 {
 
-//    symbolics
-//    symbolic dependence tests
 
     int inc = *(int*)func_args->arg_info;
 
@@ -916,13 +781,10 @@ real_t s175(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %1.7
 
 real_t s176(struct args_t * func_args)
 {
 
-//    symbolics
-//    convolution
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -941,19 +803,11 @@ real_t s176(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// **********************************************************
-// *                                *
-// *            VECTORIZATION                *
-// *                                *
-// **********************************************************
 
-// %2.1
 
 real_t s211(struct args_t * func_args)
 {
 
-//    statement reordering
-//    statement reordering allows vectorization
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -970,13 +824,10 @@ real_t s211(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.1
 
 real_t s212(struct args_t * func_args)
 {
 
-//    statement reordering
-//    dependency needing temporary
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -996,8 +847,6 @@ real_t s212(struct args_t * func_args)
 real_t s1213(struct args_t * func_args)
 {
 
-//    statement reordering
-//    dependency needing temporary
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1014,13 +863,10 @@ real_t s1213(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.2
 
 real_t s221(struct args_t * func_args)
 {
 
-//    loop distribution
-//    loop that is partially recursive
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1040,7 +886,6 @@ real_t s221(struct args_t * func_args)
 real_t s1221(struct args_t * func_args)
 {
 
-//    run-time symbolic resolution
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1056,13 +901,10 @@ real_t s1221(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.2
 
 real_t s222(struct args_t * func_args)
 {
 
-//    loop distribution
-//    partial loop vectorizatio recurrence in middle
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1080,12 +922,9 @@ real_t s222(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.3
 
 real_t s231(struct args_t * func_args)
 {
-//    loop interchange
-//    loop with data dependency
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1103,13 +942,10 @@ real_t s231(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.3
 
 real_t s232(struct args_t * func_args)
 {
 
-//    loop interchange
-//    interchanging of triangular loops
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1130,8 +966,6 @@ real_t s232(struct args_t * func_args)
 real_t s1232(struct args_t * func_args)
 {
 
-//    loop interchange
-//    interchanging of triangular loops
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1149,13 +983,10 @@ real_t s1232(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.3
 
 real_t s233(struct args_t * func_args)
 {
 
-//    loop interchange
-//    interchanging with one of two inner loops
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1179,8 +1010,6 @@ real_t s233(struct args_t * func_args)
 real_t s2233(struct args_t * func_args)
 {
 
-//    loop interchange
-//    interchanging with one of two inner loops
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1201,12 +1030,9 @@ real_t s2233(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.3
 real_t s235(struct args_t * func_args)
 {
 
-//    loop interchanging
-//    imperfectly nested loops
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1225,13 +1051,10 @@ real_t s235(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.4
 
 real_t s241(struct args_t * func_args)
 {
 
-//    node splitting
-//    preloading necessary to allow vectorization
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1248,13 +1071,10 @@ real_t s241(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.4
 
-//int s242(real_t s1, real_t s2)
 real_t s242(struct args_t * func_args)
 {
 
-//    node splitting
 
     struct{real_t a;real_t b;} * x = func_args->arg_info;
     real_t s1 = x->a;
@@ -1274,13 +1094,10 @@ real_t s242(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.4
 
 real_t s243(struct args_t * func_args)
 {
 
-//    node splitting
-//    false dependence cycle breaking
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1298,13 +1115,10 @@ real_t s243(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.4
 
 real_t s244(struct args_t * func_args)
 {
 
-//    node splitting
-//    false dependence cycle breaking
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1325,8 +1139,6 @@ real_t s244(struct args_t * func_args)
 real_t s1244(struct args_t * func_args)
 {
 
-//    node splitting
-//    cycle with ture and anti dependency
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1346,8 +1158,6 @@ real_t s1244(struct args_t * func_args)
 real_t s2244(struct args_t * func_args)
 {
 
-//    node splitting
-//    cycle with ture and anti dependency
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1364,13 +1174,10 @@ real_t s2244(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.5
 
 real_t s251(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    scalar expansion
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1391,8 +1198,6 @@ real_t s251(struct args_t * func_args)
 real_t s1251(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    scalar expansion
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1414,8 +1219,6 @@ real_t s1251(struct args_t * func_args)
 real_t s2251(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    scalar expansion
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1437,8 +1240,6 @@ real_t s2251(struct args_t * func_args)
 real_t s3251(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    scalar expansion
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1456,13 +1257,10 @@ real_t s3251(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.5
 
 real_t s252(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    loop with ambiguous scalar temporary
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1482,13 +1280,10 @@ real_t s252(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.5
 
 real_t s253(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    scalar expansio assigned under if
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1509,13 +1304,10 @@ real_t s253(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.5
 
 real_t s254(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    carry around variable
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1534,13 +1326,10 @@ real_t s254(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.5
 
 real_t s255(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    carry around variables, 2 levels
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1561,13 +1350,10 @@ real_t s255(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.5
 
 real_t s256(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    array expansion
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1586,13 +1372,10 @@ real_t s256(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.5
 
 real_t s257(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    array expansion
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1614,8 +1397,6 @@ real_t s257(struct args_t * func_args)
 real_t s258(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    wrap-around scalar under an if
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1637,13 +1418,10 @@ real_t s258(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s261(struct args_t * func_args)
 {
 
-//    scalar and array expansion
-//    wrap-around scalar under an if
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1666,8 +1444,6 @@ real_t s261(struct args_t * func_args)
 real_t s271(struct args_t * func_args)
 {
 
-//    control flow
-//    loop with singularity handling
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1685,14 +1461,10 @@ real_t s271(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
-//int s272(real_t t)
 real_t s272(struct args_t * func_args)
 {
 
-//    control flow
-//    loop with independent conditional
 
     int t = *(int*)func_args->arg_info;
 
@@ -1713,13 +1485,10 @@ real_t s272(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s273(struct args_t * func_args)
 {
 
-//    control flow
-//    simple loop with dependent conditional
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1738,13 +1507,10 @@ real_t s273(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s274(struct args_t * func_args)
 {
 
-//    control flow
-//    complex loop with dependent conditional
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1765,13 +1531,10 @@ real_t s274(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s275(struct args_t * func_args)
 {
 
-//    control flow
-//    if around inner loop, interchanging needed
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1794,7 +1557,6 @@ real_t s275(struct args_t * func_args)
 real_t s2275(struct args_t * func_args)
 {
 
-//    loop distribution is needed to be able to interchange
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1813,13 +1575,10 @@ real_t s2275(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s276(struct args_t * func_args)
 {
 
-//    control flow
-//    if test using loop index
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1840,12 +1599,9 @@ real_t s276(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 real_t s277(struct args_t * func_args)
 {
 
-//    control flow
-//    test for dependences arising from guard variable computation.
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1871,13 +1627,10 @@ L20:
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s278(struct args_t * func_args)
 {
 
-//    control flow
-//    if/goto to block if-then-else
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1901,13 +1654,10 @@ L30:
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s279(struct args_t * func_args)
 {
 
-//    control flow
-//    vector if/gotos
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1938,8 +1688,6 @@ L30:
 real_t s1279(struct args_t * func_args)
 {
 
-//    control flow
-//    vector if/gotos
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -1959,14 +1707,10 @@ real_t s1279(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
-//int s2710( real_t x)
 real_t s2710(struct args_t * func_args)
 {
 
-//    control flow
-//    scalar and vector ifs
 
     int x = *(int*)func_args->arg_info;
 
@@ -1998,13 +1742,10 @@ real_t s2710(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s2711(struct args_t * func_args)
 {
 
-//    control flow
-//    semantic if removal
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2022,13 +1763,10 @@ real_t s2711(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.7
 
 real_t s2712(struct args_t * func_args)
 {
 
-//    control flow
-//    if to elemental min
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2046,14 +1784,10 @@ real_t s2712(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.8
 
 real_t s281(struct args_t * func_args)
 {
 
-//    crossing thresholds
-//    index set splitting
-//    reverse data access
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2075,9 +1809,6 @@ real_t s281(struct args_t * func_args)
 real_t s1281(struct args_t * func_args)
 {
 
-//    crossing thresholds
-//    index set splitting
-//    reverse data access
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2096,13 +1827,10 @@ real_t s1281(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.9
 
 real_t s291(struct args_t * func_args)
 {
 
-//    loop peeling
-//    wrap around variable, 1 level
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2121,14 +1849,10 @@ real_t s291(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.9
 
 real_t s292(struct args_t * func_args)
 {
 
-//    loop peeling
-//    wrap around variable, 2 levels
-//    similar to S291
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2149,13 +1873,10 @@ real_t s292(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.9
 
 real_t s293(struct args_t * func_args)
 {
 
-//    loop peeling
-//    a(i)=a(0) with actual dependence cycle, loop is vectorizable
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2171,14 +1892,10 @@ real_t s293(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.10
 
 real_t s2101(struct args_t * func_args)
 {
 
-//    diagonals
-//    main diagonal calculation
-//    jump in data access
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2194,13 +1911,10 @@ real_t s2101(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.12
 
 real_t s2102(struct args_t * func_args)
 {
 
-//    diagonals
-//    identity matrix, best results vectorize both inner and outer loops
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2219,12 +1933,10 @@ real_t s2102(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %2.11
 
 real_t s2111(struct args_t * func_args)
 {
 
-//    wavefronts, it will make jump in data access
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2242,19 +1954,11 @@ real_t s2111(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// **********************************************************
-//                                *
-//            IDIOM RECOGNITION            *
-//                                *
-// **********************************************************
 
-// %3.1
 
 real_t s311(struct args_t * func_args)
 {
 
-//    reductions
-//    sum reduction
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2282,8 +1986,6 @@ real_t test(real_t* A){
 real_t s31111(struct args_t * func_args)
 {
 
-//    reductions
-//    sum reduction
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2306,13 +2008,10 @@ real_t s31111(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %3.1
 
 real_t s312(struct args_t * func_args)
 {
 
-//    reductions
-//    product reduction
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2330,12 +2029,9 @@ real_t s312(struct args_t * func_args)
     return prod;
 }
 
-// %3.1
 real_t s313(struct args_t * func_args)
 {
 
-//    reductions
-//    dot product
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2353,13 +2049,10 @@ real_t s313(struct args_t * func_args)
     return dot;
 }
 
-// %3.1
 
 real_t s314(struct args_t * func_args)
 {
 
-//    reductions
-//    if to max reduction
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2379,13 +2072,10 @@ real_t s314(struct args_t * func_args)
     return x;
 }
 
-// %3.1
 
 real_t s315(struct args_t * func_args)
 {
 
-//    reductions
-//    if to max with index reductio 1 dimension
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2412,13 +2102,10 @@ real_t s315(struct args_t * func_args)
     return index + x + 1;
 }
 
-// %3.1
 
 real_t s316(struct args_t * func_args)
 {
 
-//    reductions
-//    if to min reduction
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2437,15 +2124,10 @@ real_t s316(struct args_t * func_args)
     gettimeofday(&func_args->t2, NULL);
     return x;
 }
-// %3.1
 
 real_t s317(struct args_t * func_args)
 {
 
-//    reductions
-//    product reductio vectorize with
-//    1. scalar expansion of factor, and product reduction
-//    2. closed form solution: q = factor**n
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2463,14 +2145,10 @@ real_t s317(struct args_t * func_args)
     return q;
 }
 
-// %3.1
 
-//int s318( int inc)
 real_t s318(struct args_t * func_args)
 {
 
-//    reductions
-//    isamax, max absolute value, increments not equal to 1
 
     int inc = *(int*)func_args->arg_info;
 
@@ -2501,13 +2179,10 @@ L5:
     return max + index + 1;
 }
 
-// %3.1
 
 real_t s319(struct args_t * func_args)
 {
 
-//    reductions
-//    coupled reductions
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2528,14 +2203,10 @@ real_t s319(struct args_t * func_args)
     return sum;
 }
 
-// %3.1
 
 real_t s3110(struct args_t * func_args)
 {
 
-//    reductions
-//    if to max with index reductio 2 dimensions
-//    similar to S315
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2566,8 +2237,6 @@ real_t s3110(struct args_t * func_args)
 real_t s13110(struct args_t * func_args)
 {
 
-//    reductions
-//    if to max with index reductio 2 dimensions
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2595,13 +2264,10 @@ real_t s13110(struct args_t * func_args)
     return max + xindex+1 + yindex+1;
 }
 
-// %3.1
 
 real_t s3111(struct args_t * func_args)
 {
 
-//    reductions
-//    conditional sum reduction
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2621,13 +2287,10 @@ real_t s3111(struct args_t * func_args)
     return sum;
 }
 
-// %3.1
 
 real_t s3112(struct args_t * func_args)
 {
 
-//    reductions
-//    sum reduction saving running sums
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2646,13 +2309,10 @@ real_t s3112(struct args_t * func_args)
     return sum;
 }
 
-// %3.1
 
 real_t s3113(struct args_t * func_args)
 {
 
-//    reductions
-//    maximum of absolute value
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2672,13 +2332,10 @@ real_t s3113(struct args_t * func_args)
     return max;
 }
 
-// %3.2
 
 real_t s321(struct args_t * func_args)
 {
 
-//    recurrences
-//    first order linear recurrence
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2694,13 +2351,10 @@ real_t s321(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %3.2
 
 real_t s322(struct args_t * func_args)
 {
 
-//    recurrences
-//    second order linear recurrence
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2716,13 +2370,10 @@ real_t s322(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %3.2
 
 real_t s323(struct args_t * func_args)
 {
 
-//    recurrences
-//    coupled recurrence
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2739,13 +2390,10 @@ real_t s323(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %3.3
 
 real_t s331(struct args_t * func_args)
 {
 
-//    search loops
-//    if to last-1
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2767,13 +2415,9 @@ real_t s331(struct args_t * func_args)
     return j+1;
 }
 
-// %3.3
-//int s332( real_t t)
 real_t s332(struct args_t * func_args)
 {
 
-//    search loops
-//    first value greater than threshold
 
     int t = *(int*)func_args->arg_info;
 
@@ -2802,14 +2446,10 @@ L20:
     return value;
 }
 
-// %3.4
 
 real_t s341(struct args_t * func_args)
 {
 
-//    packing
-//    pack positive values
-//    not vectorizable, value of j in unknown at each iteration
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2830,14 +2470,10 @@ real_t s341(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %3.4
 
 real_t s342(struct args_t * func_args)
 {
 
-//    packing
-//    unpacking
-//    not vectorizable, value of j in unknown at each iteration
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2858,14 +2494,10 @@ real_t s342(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %3.4
 
 real_t s343(struct args_t * func_args)
 {
 
-//    packing
-//    pack 2-d array into one dimension
-//    not vectorizable, value of k in unknown at each iteration
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2888,13 +2520,10 @@ real_t s343(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %3.5
 
 real_t s351(struct args_t * func_args)
 {
 
-//    loop rerolling
-//    unrolled saxpy
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2918,7 +2547,6 @@ real_t s351(struct args_t * func_args)
 real_t s1351(struct args_t * func_args)
 {
 
-//    induction pointer recognition
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2940,13 +2568,10 @@ real_t s1351(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %3.5
 
 real_t s352(struct args_t * func_args)
 {
 
-//    loop rerolling
-//    unrolled dot product
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -2965,15 +2590,10 @@ real_t s352(struct args_t * func_args)
     return dot;
 }
 
-// %3.5
 
-//int s353(int* __restrict__ ip)
 real_t s353(struct args_t * func_args)
 {
 
-//    loop rerolling
-//    unrolled sparse saxpy
-//    gather is required
 
     int * __restrict__ ip = func_args->arg_info;
 
@@ -2996,20 +2616,11 @@ real_t s353(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// **********************************************************
-//                                *
-//             LANGUAGE COMPLETENESS            *
-//                                *
-// **********************************************************
 
-// %4.1
-// %4.2
 
 real_t s421(struct args_t * func_args)
 {
 
-//    storage classes and equivalencing
-//    equivalence- no overlap
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3031,8 +2642,6 @@ real_t s421(struct args_t * func_args)
 real_t s1421(struct args_t * func_args)
 {
 
-//    storage classes and equivalencing
-//    equivalence- no overlap
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3050,14 +2659,10 @@ real_t s1421(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.2
 
 real_t s422(struct args_t * func_args)
 {
 
-//    storage classes and equivalencing
-//    common and equivalence statement
-//    anti-dependence, threshold of 4
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3075,15 +2680,11 @@ real_t s422(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.2
 
 real_t s423(struct args_t * func_args)
 {
 
-//    storage classes and equivalencing
-//    common and equivalenced variables - with anti-dependence
 
-    // do this again here
     int vl = 64;
     xx = flat_2d_array + vl;
 
@@ -3101,16 +2702,11 @@ real_t s423(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.2
 
 real_t s424(struct args_t * func_args)
 {
 
-//    storage classes and equivalencing
-//    common and equivalenced variables - overlap
-//    vectorizeable in strips of 64 or less
 
-    // do this again here
     int vl = 63;
     xx = flat_2d_array + vl;
 
@@ -3128,13 +2724,10 @@ real_t s424(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.3
 
 real_t s431(struct args_t * func_args)
 {
 
-//    parameters
-//    parameter statement
 
     int k1=1;
     int k2=2;
@@ -3154,13 +2747,10 @@ real_t s431(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.4
 
 real_t s441(struct args_t * func_args)
 {
 
-//    non-logical if's
-//    arithmetic if
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3182,13 +2772,10 @@ real_t s441(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.4
 
 real_t s442(struct args_t * func_args)
 {
 
-//    non-logical if's
-//    computed goto
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3222,13 +2809,10 @@ L50:
     return calc_checksum(__func__);
 }
 
-// %4.4
 
 real_t s443(struct args_t * func_args)
 {
 
-//    non-logical if's
-//    arithmetic if
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3255,13 +2839,10 @@ L50:
     return calc_checksum(__func__);
 }
 
-// %4.5
 
 real_t s451(struct args_t * func_args)
 {
 
-//    intrinsic functions
-//    intrinsics
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3277,13 +2858,10 @@ real_t s451(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.5
 
 real_t s452(struct args_t * func_args)
 {
 
-//    intrinsic functions
-//    seq function
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3299,12 +2877,10 @@ real_t s452(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.5
 
 real_t s453(struct args_t * func_args)
 {
 
-//    induction varibale recognition
 
     real_t s;
 
@@ -3324,17 +2900,14 @@ real_t s453(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.7
 
 int s471s(void)
 {
-// --  dummy subroutine call made in s471
     return 0;
 }
 
 real_t s471(struct args_t * func_args){
 
-//    call statements
 
     int m = LEN_1D;
 
@@ -3354,13 +2927,10 @@ real_t s471(struct args_t * func_args){
     return calc_checksum(__func__);
 }
 
-// %4.8
 
 real_t s481(struct args_t * func_args)
 {
 
-//    non-local goto's
-//    stop statement
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3379,14 +2949,10 @@ real_t s481(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.8
 
-// %4.8
 real_t s482(struct args_t * func_args)
 {
 
-//    non-local goto's
-//    other loop exit with code before exit
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3403,15 +2969,10 @@ real_t s482(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.9
 
-//int s491(int* __restrict__ ip)
 real_t s491(struct args_t * func_args)
 {
 
-//    vector semantics
-//    indirect addressing on lhs, store in sequence
-//    scatter is required
 
     int * __restrict__ ip = func_args->arg_info;
 
@@ -3429,15 +2990,10 @@ real_t s491(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.11
 
-//int s4112(int* __restrict__ ip, real_t s)
 real_t s4112(struct args_t * func_args)
 {
 
-//    indirect addressing
-//    sparse saxpy
-//    gather is required
 
     struct{int * __restrict__ a;real_t b;} * x = func_args->arg_info;
     int * __restrict__ ip = x->a;
@@ -3457,15 +3013,10 @@ real_t s4112(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.11
 
-//int s4113(int* __restrict__ ip)
 real_t s4113(struct args_t * func_args)
 {
 
-//    indirect addressing
-//    indirect addressing on rhs and lhs
-//    gather and scatter is required
 
     int * __restrict__ ip = func_args->arg_info;
 
@@ -3483,15 +3034,10 @@ real_t s4113(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.11
 
-//int s4114(int* ip, int n1)
 real_t s4114(struct args_t * func_args)
 {
 
-//    indirect addressing
-//    mix indirect addressing with variable lower and upper bounds
-//    gather is required
 
     struct{int * __restrict__ a;int b;} * x = func_args->arg_info;
     int * __restrict__ ip = x->a;
@@ -3514,15 +3060,10 @@ real_t s4114(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.11
 
-//int s4115(int* __restrict__ ip)
 real_t s4115(struct args_t * func_args)
 {
 
-//    indirect addressing
-//    sparse dot product
-//    gather is required
 
     int * __restrict__ ip = func_args->arg_info;
 
@@ -3542,15 +3083,10 @@ real_t s4115(struct args_t * func_args)
     return sum;
 }
 
-// %4.11
 
-//int s4116(int* __restrict__ ip, int j, int inc)
 real_t s4116(struct args_t * func_args)
 {
 
-//    indirect addressing
-//    more complicated sparse sdot
-//    gather is required
 
     struct{int * __restrict__ a;int b;int c;} * x = func_args->arg_info;
     int * __restrict__ ip = x->a;
@@ -3575,13 +3111,10 @@ real_t s4116(struct args_t * func_args)
     return sum;
 }
 
-// %4.11
 
 real_t s4117(struct args_t * func_args)
 {
 
-//    indirect addressing
-//    seq function
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3597,7 +3130,6 @@ real_t s4117(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %4.12
 
 real_t f(real_t a, real_t b){
     return a*b;
@@ -3606,8 +3138,6 @@ real_t f(real_t a, real_t b){
 real_t s4121(struct args_t * func_args)
 {
 
-//    statement functions
-//    elementwise multiplication
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3623,13 +3153,10 @@ real_t s4121(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
 real_t va(struct args_t * func_args)
 {
 
-//    control loops
-//    vector assignment
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3645,15 +3172,10 @@ real_t va(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
-//int vag( int* __restrict__ ip)
 real_t vag(struct args_t * func_args)
 {
 
-//    control loops
-//    vector assignment, gather
-//    gather is required
 
     int * __restrict__ ip = func_args->arg_info;
 
@@ -3671,15 +3193,10 @@ real_t vag(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
-//int vas( int* __restrict__ ip)
 real_t vas(struct args_t * func_args)
 {
 
-//    control loops
-//    vector assignment, scatter
-//    scatter is required
 
     int * __restrict__ ip = func_args->arg_info;
 
@@ -3697,13 +3214,10 @@ real_t vas(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
 real_t vif(struct args_t * func_args)
 {
 
-//    control loops
-//    vector if
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3721,13 +3235,10 @@ real_t vif(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
 real_t vpv(struct args_t * func_args)
 {
 
-//    control loops
-//    vector plus vector
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3743,13 +3254,10 @@ real_t vpv(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
 real_t vtv(struct args_t * func_args)
 {
 
-//    control loops
-//    vector times vector
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3765,13 +3273,10 @@ real_t vtv(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
 real_t vpvtv(struct args_t * func_args)
 {
 
-//    control loops
-//    vector plus vector times vector
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3787,14 +3292,10 @@ real_t vpvtv(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
-//real_t vpvts( real_t s)
 real_t vpvts(struct args_t * func_args)
 {
 
-//    control loops
-//    vector plus vector times scalar
 
     real_t s = *(int*)func_args->arg_info;
 
@@ -3812,13 +3313,10 @@ real_t vpvts(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
 real_t vpvpv(struct args_t * func_args)
 {
 
-//    control loops
-//    vector plus vector plus vector
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3834,13 +3332,10 @@ real_t vpvpv(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
 real_t vtvtv(struct args_t * func_args)
 {
 
-//    control loops
-//    vector times vector times vector
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3856,13 +3351,10 @@ real_t vtvtv(struct args_t * func_args)
     return calc_checksum(__func__);
 }
 
-// %5.1
 
 real_t vsumr(struct args_t * func_args)
 {
 
-//    control loops
-//    vector sum reduction
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3880,13 +3372,10 @@ real_t vsumr(struct args_t * func_args)
     return sum;
 }
 
-// %5.1
 
 real_t vdotr(struct args_t * func_args)
 {
 
-//    control loops
-//    vector dot product reduction
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
@@ -3904,14 +3393,10 @@ real_t vdotr(struct args_t * func_args)
     return dot;
 }
 
-// %5.1
 
 real_t vbor(struct args_t * func_args)
 {
 
-//    control loops
-//    basic operations rates, isolate arithmetic from memory traffic
-//    all combinations of three, 59 flops for 6 loads and 1 store.
 
     initialise_arrays(__func__);
     gettimeofday(&func_args->t1, NULL);
