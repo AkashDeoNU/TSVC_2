@@ -1,9 +1,9 @@
 
-CC=clang-18
-CXX=clang++-18
+CC=~/tank/LLVM-21.1.8-Linux-X64/bin/clang
+CXX=~/tank/LLVM-21.1.8-Linux-X64/bin/clang++
 # no FC for clang
 FC=
-flags = -O3 -fstrict-aliasing
+flags = -O3 -g3 -fno-discard-value-names -fstrict-aliasing -march=native
 vecflags = -fvectorize
 #-fslp-vectorize-aggressive
 novecflags = -fno-vectorize
