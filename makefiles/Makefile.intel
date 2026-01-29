@@ -1,7 +1,7 @@
 CC=icx -std=c99
 CXX=icpx
 # FC=ifort -align array64byte
-flags = -O3 -xHost -qopt-zmm-usage=high -Wno-overriding-option
+flags = -O3 -g3 -xHost -qopt-zmm-usage=high -Wno-overriding-option
 vecflags = -vec
 novecflags = -no-vec
 omp_flags+=-fopenmp
