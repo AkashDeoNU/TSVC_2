@@ -7,7 +7,7 @@ BIN_DIR=../bin/$(COMPILER)
 
 libs=-lm
 
-all : $(BIN_DIR)/tsvc_vec $(BIN_DIR)/tsvc_novec
+all : $(BIN_DIR)/tsvc_vec
 
 $(BIN_DIR)/tsvc_% : tsvc_%.o $(COMMON_FILES)
 	@mkdir -p $(BIN_DIR)
