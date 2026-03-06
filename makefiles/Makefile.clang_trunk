@@ -1,6 +1,5 @@
-
-CC=~/tank/LLVM-21.1.8-Linux-X64/bin/clang
-CXX=~/tank/LLVM-21.1.8-Linux-X64/bin/clang++
+CC=~/pool/llvm-project/build/bin/clang
+CXX=~/pool/llvm-project/build/bin/clang++
 # no FC for clang
 FC=
 flags = -O3 -g3 -fno-discard-value-names -fstrict-aliasing -march=native
