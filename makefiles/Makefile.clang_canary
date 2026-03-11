@@ -1,5 +1,5 @@
-CC=~/pool/llvm-project/install/TrunkRelWithDebInfo/bin/clang
-CXX=~/pool/llvm-project/install/TrunkRelWithDebInfo/bin/clang++
+CC=~/pool/llvm-project/install/CanaryRelWithDebInfo/bin/clang
+CXX=~/pool/llvm-project/install/CanaryRelWithDebInfo/bin/clang++
 # no FC for clang
 FC=
 flags = -O3 -g3 -fno-discard-value-names -fstrict-aliasing -march=native
