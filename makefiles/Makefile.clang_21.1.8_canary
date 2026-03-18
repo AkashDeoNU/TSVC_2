@@ -1,4 +1,4 @@
-CC=~/pool/llvm-project/install/canarCanaryRelWithDebInfo/bin/clang
+CC=~/pool/llvm-project/install/canaryClang21.1.8Release/bin/clang
 CXX=~/pool/llvm-project/install/canaryClang21.1.8Release/bin/clang++
 # no FC for clang
 FC=
